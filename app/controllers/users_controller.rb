@@ -3,6 +3,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @id = params[:id]
+    @user_id = params[:id]
   end
 end
