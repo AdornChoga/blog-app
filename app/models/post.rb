@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :comments
 
   def update_posts_counter
-    user = User.find(self.user_id)
-    user.increment(:posts_counter)
+    user = User.find(user_id)
+    user.update(posts_counter: user.posts_counter + 1)
   end
 end
