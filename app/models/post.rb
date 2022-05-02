@@ -9,6 +9,8 @@ class Post < ApplicationRecord
 
   def update_posts_counter
     user = User.find(user_id)
-    user.update(posts_counter: user.posts_counter + 1)
+    user_posts = user.posts_counter
+    user_posts = 0 unless user_posts
+    user.update(posts_counter: user_posts + 1)
   end
 end
