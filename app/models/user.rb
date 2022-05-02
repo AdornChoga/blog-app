@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-  has_many :users
-  has_many :likes, as: :likeable
-  has_many :comments, as: :commentable
+  has_many :posts
+  has_many :likes
+  has_many :comments
+  def self.three_most_recent_posts(user)
+    user.posts.order(created_at: :asc).limit(3)
+  end
 end
