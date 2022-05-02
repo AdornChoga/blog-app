@@ -5,7 +5,7 @@ class Like < ApplicationRecord
   def update_likes_counter
     post = Post.find(post_id)
     post_likes = post.likes_counter
-    post_likes = 0 unless post_likes
+    post_likes ||= 0
     post.update(likes_counter: post_likes + 1)
   end
 end
