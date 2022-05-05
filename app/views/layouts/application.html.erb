@@ -14,10 +14,13 @@
 
   <body>
     <div class="container-sm mt-5 border border-top-0 border-bottom-0">
-      <div>
-        <p class="text-end">
+      <div class="d-flex justify-content-between">
+        <h5>
+          <%= link_to "Home", root_path %>
+        </h5>
+        <h5>
           <%= link_to "My Profile", user_path(current_user.id) %>
-        </p>
+        </h5>
       </div>
       <%= yield %>
     </div>
