@@ -1,0 +1,7 @@
+<ul class="border mt-1 mx-3 bg-info">
+  <% comments.each do |comment| %>
+  <li>
+    <%= "#{comment.user.name}: #{comment.text}:" %>
+  </li>
+  <% end %>
+</ul>

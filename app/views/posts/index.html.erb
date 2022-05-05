@@ -1,1 +1,8 @@
-<h1>Here is a list of all posts by a user</h1>
+<%= render "shared/profile", user: @user %>
+
+<% @posts.each do |post| %>
+  <%= render "shared/post", post: post %>
+  <%= render partial: "shared/comments", locals: {comments: post.comments} %>
+<% end %>
+
+<button class="btn mt-4 bg-primary d-block mx-auto">Pagination</button>
