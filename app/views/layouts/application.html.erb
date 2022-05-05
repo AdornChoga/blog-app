@@ -14,6 +14,11 @@
 
   <body>
     <div class="container-sm mt-5 border border-top-0 border-bottom-0">
+      <div>
+        <p class="text-end">
+          <%= link_to "My Profile", user_path(current_user.id) %>
+        </p>
+      </div>
       <%= yield %>
     </div>
     <footer class="bg-secondary w-100" style="height: 30px; position: fixed; bottom:0;"></footer>

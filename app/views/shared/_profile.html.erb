@@ -7,6 +7,8 @@
     <p class="align-self-end m-0">
       Number of posts: <%= user.posts.size %>
     </p>
-    <%= link_to "view profile", user_path(user.id) %>
+    <% unless current_page?('users', 'show') %>
+      <%= link_to "view profile", user_path(user.id) %>
+    <% end %>
   </div>
 </div>
