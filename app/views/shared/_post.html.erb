@@ -2,7 +2,7 @@
   <h4><%= post.title %></h4>
   <p><%= "#{post.text.slice(0, 180)}..." %></p>
   <p class="align-self-end px-1">
-    <%= link_to "view post", user_post_path(@user.id, post.id) %>
+    <%= link_to "view post", user_post_path(@user.id, post.id), class: "link-to" %>
     Comments: <%= post.comments.size %>, Likes: <%= post.likes.size %>
   </p>
 </div>
