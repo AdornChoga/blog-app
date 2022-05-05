@@ -1,1 +1,14 @@
-<h1>Here is a user with id: <%="#{@user_id}"%></h1>
+<%= render "shared/profile", user: @user %>
+
+<div class="mt-4">
+  <h4>Bio</h4>
+  <i><%= @user.bio %></i>
+</div>
+
+<h5 class="mt-4 text-center">Posts</h5>
+
+<% @posts.each do |post| %>
+  <%= render "shared/post", post: post %>
+<% end %>
+
+<button class="btn mt-4 bg-light d-block mx-auto"><%= link_to "See all posts", user_posts_path(@user.id) %></button>
