@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
-  def index; end
+  def index
+    @user = User.find(params[:user_id])
+    @posts = @user.posts
+  end
 
   def show
-    @post_id = params[:id]
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:id])
   end
 end
-
-Comment.create(text: 'Hi Tom!', user_id: second_user.id, post_id: first_post.id)

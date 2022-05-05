@@ -1,0 +1,12 @@
+<div class="row bg-dark mt-4 mx-3 text-light">
+  <img class="col-3" style="width: 140px; height: 120px" src=<%= user.photo %> alt="profile image"/>
+  <div class="col-9 align-self-center d-flex justify-content-between align-items-center border" style="height: 90px;">
+    <h4 class="m-0">
+      <%= user.name %>
+    </h4>
+    <p class="align-self-end m-0">
+      Number of posts: <%= user.posts.size %>
+    </p>
+    <%= link_to "view profile", user_path(user.id) %>
+  </div>
+</div>
