@@ -1,10 +1,10 @@
 <div class="d-flex flex-column align-items-center">
   <h3 class="my-3">Commenting on post</h3>
-  
+
   <%= form_with model: @comment, url: user_post_comments_path do |form| %>
     <div>
       <%= form.label :text %><br />
-      <%= form.text_field :text %>
+      <%= form.text_area :text, size: "70x5" %>
     </div>
     <br />
     <%= form.submit %>
