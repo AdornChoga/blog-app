@@ -1,0 +1,16 @@
+<div class="container p-3 border d-flex flex-column align-items-center">
+  <h3 class="my-3">Create a new post</h3>
+  <%= form_with model: @post, url: user_posts_path do |form| %>
+    <div>
+      <%= form.label :title %><br />
+      <%= form.text_field :title %>
+    </div>
+    <br />
+    <div>
+      <%= form.label :text %><br />
+      <%= form.text_area :text, size: "70x5"%>
+    </div>
+    <br />
+    <%= form.submit %>
+  <% end %>
+</div>

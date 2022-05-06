@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   has_many :likes
   has_many :comments
 
+  validates :title, :text, presence: true
+
   def five_most_recent_comments
     comments.order(created_at: :desc).limit(5)
   end

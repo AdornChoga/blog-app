@@ -7,8 +7,10 @@
 
 <h5 class="mt-4 text-center">Posts</h5>
 
-<% @posts.each do |post| %>
-  <%= render "shared/post", post: post %>
+<% @posts.each_with_index do |post,index| %>
+  <% if index < 2 %>
+    <%= render "shared/post", post: post %>
+  <% end %>
 <% end %>
 
 <button class="btn mt-4 bg-light d-block mx-auto"><%= link_to "See all posts", user_posts_path(@user.id) %></button>
