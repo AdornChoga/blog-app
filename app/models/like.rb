@@ -4,8 +4,7 @@ class Like < ApplicationRecord
 
   validates :user_id, :post_id, presence: true
 
-  def update_likes_counter
-    post = Post.find(post_id)
+  def update_likes_counter(post)
     post_likes = post.likes_counter
     post_likes ||= 0
     post.update(likes_counter: post_likes + 1)

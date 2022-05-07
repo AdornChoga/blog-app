@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts.includes(:comments)
+    @posts = @user.posts
   end
 
   def new
@@ -13,7 +13,7 @@ class PostsController < ApplicationController
     @post.comments_counter = 0
     @post.likes_counter = 0
     if @post.save
-      @post.update_posts_counter
+      @post.update_posts_counter(User.find(params[:user_id]))
       redirect_to user_posts_path(current_user), notice: 'Post was successfully created'
     else
       redirect_to new_user_post_path(current_user.id), notice: @post.errors.first.full_message.to_s

@@ -18,7 +18,7 @@ describe User, type: :request do
 
   describe 'GET #show' do
     before(:each) do
-      user = User.create(name: 'Nuri', bio: 'biography for testing', photo: 'photo link', posts_counter: 0)
+      user = FactoryBot.create(:user)
       get user_path(id: user.id)
     end
 
