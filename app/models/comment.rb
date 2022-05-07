@@ -2,7 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
 
-  validates :text, presence: true
+  validates :text, presence: true, length: { maximum: 250 }
 
   def update_comments_counter
     post = Post.find(post_id)
