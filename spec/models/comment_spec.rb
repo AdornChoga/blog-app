@@ -20,19 +20,19 @@ RSpec.describe Comment, type: :model do
     Comment.create(
       text: 'Nice',
       user_id: user.id,
-      post_id: post.id,
+      post_id: post.id
     )
   end
 
   describe 'Validations' do
-   it 'is not valid without text attribute' do
-    comment.text = nil
-    expect(comment).to_not be_valid
-   end
+    it 'is not valid without text attribute' do
+      comment.text = nil
+      expect(comment).to_not be_valid
+    end
 
-   it 'is not valid when text is greater than 250 characters' do
-    comment.text = 'a' * 256
-    expect(comment).to_not be_valid
-   end
+    it 'is not valid when text is greater than 250 characters' do
+      comment.text = 'a' * 256
+      expect(comment).to_not be_valid
+    end
   end
 end

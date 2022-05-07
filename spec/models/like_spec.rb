@@ -19,19 +19,19 @@ RSpec.describe Like, type: :model do
   let(:like) do
     Like.create(
       user_id: user.id,
-      post_id: post.id,
+      post_id: post.id
     )
   end
 
   describe 'Validations' do
-   it 'is not valid without text attribute' do
-    like.user_id = nil
-    expect(like).to_not be_valid
-   end
+    it 'is not valid without text attribute' do
+      like.user_id = nil
+      expect(like).to_not be_valid
+    end
 
-   it 'is not valid when text is greater than 250 characters' do
-    like.post_id = nil
-    expect(like).to_not be_valid
-   end
+    it 'is not valid when text is greater than 250 characters' do
+      like.post_id = nil
+      expect(like).to_not be_valid
+    end
   end
 end
