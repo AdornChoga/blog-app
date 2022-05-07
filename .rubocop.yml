@@ -10,8 +10,6 @@ AllCops:
 
   DisplayCopNames: true
 
-  TargetRubyVersion: 2.5.0
-
 
 Layout/LineLength:
   Max: 120
