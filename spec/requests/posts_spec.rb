@@ -21,11 +21,11 @@ RSpec.describe Post, type: :request do
   end
 
   describe 'GET #show' do
-  before(:each) do
-    user = User.create(name: 'Nuri', bio: 'biography for testing', photo: 'photo link', posts_counter: 0)
-    post = Post.create(user_id: user.id, title: 'My title', text: 'Some text', comments_counter: 0, likes_counter: 0)
-    get user_post_path(user_id: user.id, id: post.id)
-  end
+    before(:each) do
+      user = User.create(name: 'Nuri', bio: 'biography for testing', photo: 'photo link', posts_counter: 0)
+      post = Post.create(user_id: user.id, title: 'My title', text: 'Some text', comments_counter: 0, likes_counter: 0)
+      get user_post_path(user_id: user.id, id: post.id)
+    end
 
     it 'should return a 200 response status code' do
       expect(response).to have_http_status 200
