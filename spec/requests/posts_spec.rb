@@ -23,15 +23,15 @@ RSpec.describe Post, type: :request do
     before(:each) do
       get '/users/1/posts/1'
     end
-  
+
     it 'should return a 200 response status code' do
       expect(response).to have_http_status 200
     end
-  
+
     it 'should render show template' do
       expect(response).to render_template(:show)
     end
-  
+
     it 'include correct text in the body' do
       expect(response.body).to include 'Comments'
     end
