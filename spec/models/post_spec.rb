@@ -1,21 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:user) {
+  let(:user) do
     User.create(
-    name: 'John',
-    photo: 'https://randomuser.me/api/portraits/women/60.jpg',
-    bio: "I'm a Footballer",
-    posts_counter: 0
+      name: 'John',
+      photo: 'https://randomuser.me/api/portraits/women/60.jpg',
+      bio: "I'm a Footballer",
+      posts_counter: 0
     )
-  }
-  let(:post) {
+  end
+  let(:post) do
     Post.create(
-    title: 'post1',
-    text: 'lorem ipsum', user_id: user.id,
-    comments_counter: 0, likes_counter: 0
+      title: 'post1',
+      text: 'lorem ipsum', user_id: user.id,
+      comments_counter: 0, likes_counter: 0
     )
-  }
+  end
 
   describe 'Validations' do
     it 'is not valid without a title' do

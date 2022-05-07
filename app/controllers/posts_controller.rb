@@ -10,11 +10,13 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
+    @post.comments_counter = 0
+    @post.likes_counter = 0
     if @post.save
       @post.update_posts_counter
       redirect_to user_posts_path(current_user), notice: 'Post was successfully created'
     else
-      redirect_to new_user_post_path(current_user.id), notice: "#{@post.errors.first.full_message}"
+      redirect_to new_user_post_path(current_user.id), notice: @post.errors.first.full_message.to_s
     end
   end
 

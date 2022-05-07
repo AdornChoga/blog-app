@@ -14,4 +14,4 @@
 
 <p> <%= link_to "Add comment", new_user_post_comment_path(@user.id, @post.id) %> </p>
 
-<%= render partial: "shared/comments", locals: {comments: @post.comments} %>
+<%= render partial: "shared/comments", locals: {comments: @post.comments.includes(:user)} %>

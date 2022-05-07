@@ -9,7 +9,7 @@ class LikesController < ApplicationController
       @new_like.update_likes_counter
       redirect_to user_post_path(params[:user_id], params[:post_id]), notice: 'You liked this post!'
     else
-      redirect_to user_post_path(params[:user_id], params[:post_id]), notice: "#{@new_like.errors.first.full_message}"
+      redirect_to user_post_path(params[:user_id], params[:post_id]), notice: @new_like.errors.first.full_message.to_s
     end
   end
 end

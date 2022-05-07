@@ -19,7 +19,7 @@ users = [{
 }]
 
 users.each do |user|
-  User.create(name: user[:name], photo: user[:photo], bio: user[:bio])
+  User.create(name: user[:name], photo: user[:photo], bio: user[:bio], posts_counter: 0)
 end
 
 # POSTS
@@ -67,7 +67,10 @@ posts = [{
 }]
 
 posts.each do |post|
-  new_post = Post.create(title: post[:title], text: post[:text] ,user_id: post[:user_id])
+  new_post = Post.create(
+    title: post[:title], text: post[:text] ,user_id: post[:user_id],
+    comments_counter: 0, likes_counter: 0
+    )
   new_post.update_posts_counter
 end
 
