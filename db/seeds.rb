@@ -19,7 +19,7 @@ users = [{
 }]
 
 users.each do |user|
-  User.create(name: user[:name], photo: user[:photo], bio: user[:bio])
+  User.create(name: user[:name], photo: user[:photo], bio: user[:bio], posts_counter: 0)
 end
 
 # POSTS
@@ -67,7 +67,11 @@ posts = [{
 }]
 
 posts.each do |post|
-  Post.create(title: post[:title], text: post[:text] ,user_id: post[:user_id])
+  new_post = Post.create(
+    title: post[:title], text: post[:text] ,user_id: post[:user_id],
+    comments_counter: 0, likes_counter: 0
+    )
+  new_post.update_posts_counter(User.find(new_post.user_id))
 end
 
 # COMMENTS
@@ -139,7 +143,8 @@ comments = [{
 }]
 
 comments.each do |comment|
-  Comment.create(text: comment[:text], user_id: comment[:user_id], post_id: comment[:post_id])
+  new_comment = Comment.create(text: comment[:text], user_id: comment[:user_id], post_id: comment[:post_id])
+  new_comment.update_comments_counter(Post.find(new_comment.post_id))
 end
 
 # LIKES
@@ -204,5 +209,6 @@ likes = [{
 }]
 
 likes.each do |like|
-  Like.create(user_id: like[:user_id], post_id: like[:post_id])
+  new_like = Like.create(user_id: like[:user_id], post_id: like[:post_id])
+  new_like.update_likes_counter(Post.find(new_like.post_id))
 end
