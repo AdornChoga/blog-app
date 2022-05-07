@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
+      @post.update_posts_counter
       redirect_to user_posts_path(current_user)
     else
       render :new
