@@ -4,8 +4,8 @@ RSpec.describe User, type: :model do
   before(:each) do
     @user = FactoryBot.create(:user)
     @posts_titles = ['Post 1', 'Post 2', 'Post 3', 'Post 4']
-    @posts_titles.each do |title|
-      FactoryBot.create(:post, title:, user_id: @user.id)
+    @posts_titles.each do |post_title|
+      FactoryBot.create(:post, title: post_title, user_id: @user.id)
     end
   end
   describe 'Validations' do
