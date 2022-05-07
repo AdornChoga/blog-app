@@ -12,9 +12,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     if @post.save
       @post.update_posts_counter
-      redirect_to user_posts_path(current_user)
+      redirect_to user_posts_path(current_user), notice: 'Post was successfully created'
     else
-      render :new
+      redirect_to new_user_post_path(current_user.id), notice: "#{@post.errors.first.full_message}"
     end
   end
 
