@@ -3,20 +3,16 @@ require 'rails_helper'
 RSpec.describe Post, type: :request do
   describe 'GET #index' do
     before(:each) do
-      user = User.create(name: 'Nuri', bio: 'biography for testing', photo: 'photo link', posts_counter: 0)
-      get user_posts_path(user_id: user.id)
+      user = FactoryBot.create(:user)
+      get user_posts_url(user_id: user.id)
     end
 
-    it 'should return a 200 response status code' do
-      expect(response).to have_http_status 200
-    end
-
-    it 'should render index template' do
-      expect(response).to render_template(:index)
+    it 'should return a 302 response status code' do
+      expect(response).to have_http_status 302
     end
 
     it 'include correct text in the body' do
-      expect(response.body).to include 'Number of posts'
+      expect(response.body).to include 'You are being'
     end
   end
 
@@ -27,16 +23,12 @@ RSpec.describe Post, type: :request do
       get user_post_path(user_id: user.id, id: post.id)
     end
 
-    it 'should return a 200 response status code' do
-      expect(response).to have_http_status 200
-    end
-
-    it 'should render show template' do
-      expect(response).to render_template(:show)
+    it 'should return a 302 response status code' do
+      expect(response).to have_http_status 302
     end
 
     it 'include correct text in the body' do
-      expect(response.body).to include 'Comments'
+      expect(response.body).to include 'You are being'
     end
   end
 end
