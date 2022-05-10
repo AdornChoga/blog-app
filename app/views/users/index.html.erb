@@ -1,7 +1,7 @@
 <h3 class="text-center"><u>Bloggers</u></h3>
 
 <% @users.each do |user| %>
-  <% unless current_user?(user) %>
+  <% unless user === current_user %>
     <%= render "shared/profile", user: user %>
   <% end %>
 <% end %>

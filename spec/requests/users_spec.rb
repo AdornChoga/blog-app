@@ -23,15 +23,11 @@ describe User, type: :request do
     end
 
     it 'should return a 200 response status code' do
-      expect(response).to have_http_status 200
-    end
-
-    it 'should render show template' do
-      expect(response).to render_template(:show)
+      expect(response).to have_http_status 302
     end
 
     it 'include correct text in the body' do
-      expect(response.body).to include 'Bio'
+      expect(response.body).to include 'You are being'
     end
   end
 end

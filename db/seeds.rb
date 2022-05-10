@@ -1,25 +1,44 @@
-# USERS
+# # USERS
 
 users = [{
   :name => "James",
+  :email => "james@example.com",
   :photo => "https://randomuser.me/api/portraits/men/87.jpg",
-  :bio => "Biology"
+  :bio => "Biology",
+  :password => "password",
+  :password_confirmation => "password",
 },{
   :name => "Samntha",
+  :email => "samntha@example.com",
   :photo => "https://randomuser.me/api/portraits/women/60.jpg",
-  :bio => "Fashion Designer"
+  :bio => "Fashion Designer",
+  :password => "password",
+  :password_confirmation => "password"
 },{
   :name => "Jane",
+  :email => "jane@example.com",
   :photo => "https://randomuser.me/api/portraits/women/30.jpg",
-  :bio => "News Reporter"
+  :bio => "News Reporter",
+  :password => "password",
+  :password_confirmation => "password"
 },{
   :name => "Spencer",
+  :email => "spencer@example.com",
   :photo => "https://randomuser.me/api/portraits/men/30.jpg",
-  :bio => "Soccer Player"
+  :bio => "Soccer Player",
+  :password => "password",
+  :password_confirmation => "password"
 }]
 
 users.each do |user|
-  User.create(name: user[:name], photo: user[:photo], bio: user[:bio], posts_counter: 0)
+  User.create(
+    name: user[:name], photo: user[:photo],
+    email: user[:email],
+    bio: user[:bio], posts_counter: 0,
+    password: user[:password],
+    password_confirmation: user[:password_confirmation],
+    confirmed_at: DateTime.now
+  )
 end
 
 # POSTS

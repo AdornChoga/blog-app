@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: "btn btn-nav btn-light" %>
+        </li>
+      </ul>
+      <% if current_user %>
+        <div class="d-flex flex-row">
+          <%= link_to "New Post", new_user_post_path(current_user.id), class: "btn btn-nav btn-dark" %>
+          <div class="nav-item dropdown">
+            <span class="nav-link dropdown-toggle text-dark" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</span>
+            <ul class="dropdown-menu  dropdown-menu-end" aria-labelledby="navbarScrollingDropdown">
+              <li><%= link_to "My Profile", user_path(current_user.id), class: "dropdown-item" %></li>
+              <li><%= link_to "Edit Account", edit_user_registration_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, class: "dropdown-item", "data-turbo-method": :delete %></li>
+            </ul>
+          </div>
+        </div>
+      <% else %>
+        <ul class="d-flex flex-row list-unstyled gap-2">
+          <li><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-light" %></li>
+          <li><%= link_to "Sign In", user_session_path, class: "btn btn-dark" %></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</nav>
