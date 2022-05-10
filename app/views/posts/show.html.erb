@@ -8,10 +8,22 @@
   </p>
 </div>
 
-<%= form_with model: @like, url: user_post_likes_path(params[:user_id], @post.id) do |form| %>
-  <%= form.submit "👍 Like", class: "btn btn-primary", data: {disable_with: "👍"} %>
-<% end %>
-
-<p> <%= link_to "Add comment", new_user_post_comment_path(@user.id, @post.id) %> </p>
+<div class="d-flex justify-content-between">
+  <div class="d-flex gap-4">
+    <%= link_to "Add comment", new_user_post_comment_path(@user.id, @post.id), class: "btn text-dark btn-primary" %>
+    <%= form_with model: @like, url: user_post_likes_path(params[:user_id], @post.id) do |form| %>
+      <%= form.submit "👍 Like", class: "btn btn-primary", data: {disable_with: "👍"} %>
+    <% end %>
+  </div>
+  <% if can? :destroy, @post %>
+    <%= button_to 'Delete',
+      "/users/#{params[:user_id]}/posts/#{@post.id}",
+      class: "btn text-dark btn-danger",
+      method: :delete
+    %>
+  <% end %>
+</div>
+<br />
+<strong><u>Comments</u></strong>
 
 <%= render partial: "shared/comments", locals: {comments: @post.comments.includes(:user)} %>
