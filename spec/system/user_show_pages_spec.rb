@@ -8,7 +8,10 @@ RSpec.describe 'UserShowPages', type: :system do
     @user = create(:user, name: 'James')
     login_as @user
     @other_user = create(:user, name: 'Jane')
-    (1..6).each { |n| create(:post, user_id: @other_user.id, title: "Post #{n}") }
+    (1..6).each do |n|
+      post = create(:post, user_id: @other_user.id, title: "Post #{n}")
+      post.update_posts_counter(@other_user)
+    end
     visit "/users/#{@other_user.id}"
   end
 

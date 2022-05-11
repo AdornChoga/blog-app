@@ -9,8 +9,15 @@ RSpec.describe 'UserPostIndexPages', type: :system do
     @user = create(:user, name: 'James')
     login_as @user
     @other_user = create(:user, name: 'Jane')
-    (1..6).each { |n| create(:post, user_id: @other_user.id, title: "Post #{n}") }
-    @other_user.posts.each { |post| create(:comment, post_id: post.id, user_id: @user.id) }
+    (1..6).each do |n|
+      post = create(:post, user_id: @other_user.id, title: "Post #{n}")
+      post.update_posts_counter(@other_user)
+    end
+    @other_user.posts.each do |post|
+      comment = create(:comment, post_id: post.id, user_id: @user.id)
+      comment.update_comments_counter(post)
+    end
+    @post = @other_user.posts.first
     visit "/users/#{@other_user.id}/posts"
   end
 
@@ -25,21 +32,21 @@ RSpec.describe 'UserPostIndexPages', type: :system do
       expect(page).to have_content("Number of posts: #{@other_user.posts_counter}")
     end
     it "should display a posts's title" do
-      expect(page).to have_content(@other_user.posts.first.title)
+      expect(page).to have_content(@post.title)
     end
     it "should display a posts's body" do
-      expect(page).to have_content(@other_user.posts.first.text)
+      expect(page).to have_content(@post.text)
     end
     it "should display a post's comments" do
-      comment = @other_user.posts.first.comments.where(user_id: @user).first
+      comment = @post.comments.where(user_id: @user).first
       expect(page).to have_content("#{@user.name}: #{comment.text}")
     end
     it "should display a post's comments count" do
-      post = @other_user.posts.first
+      post = @post
       expect(page).to have_content("Comments: #{post.comments_counter}")
     end
     it "should display a post's likes count" do
-      post = @other_user.posts.first
+      post = @post
       expect(page).to have_content("Likes: #{post.likes_counter}")
     end
     it 'should display a pagination section' do
@@ -49,7 +56,7 @@ RSpec.describe 'UserPostIndexPages', type: :system do
 
   describe 'Interactions' do
     it "should redirect to to clicked post's show page" do
-      post = @other_user.posts.first
+      post = @post
       click_link(post.id.to_s)
       expect(page).to have_current_path("/users/#{@other_user.id}/posts/#{post.id}")
     end
