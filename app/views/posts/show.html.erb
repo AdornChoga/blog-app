@@ -15,7 +15,7 @@
       <%= form.submit "👍 Like", class: "btn btn-primary", data: {disable_with: "👍"} %>
     <% end %>
   </div>
-  <% if can? :destroy, @post %>
+  <% if can? :destroy, @post %>j
     <%= button_to 'Delete',
       "/users/#{params[:user_id]}/posts/#{@post.id}",
       class: "btn text-dark btn-danger",

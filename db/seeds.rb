@@ -93,6 +93,14 @@ posts.each do |post|
   new_post.update_posts_counter(User.find(new_post.user_id))
 end
 
+posts.each do |post|
+  new_post = Post.create(
+    title: post[:title], text: post[:text] ,user_id: post[:user_id],
+    comments_counter: 0, likes_counter: 0
+    )
+  new_post.update_posts_counter(User.find(new_post.user_id))
+end
+
 # COMMENTS
 
 comments = [{
