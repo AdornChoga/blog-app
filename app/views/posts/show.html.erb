@@ -26,4 +26,4 @@
 <br />
 <strong><u>Comments</u></strong>
 
-<%= render partial: "shared/comments", locals: {comments: @post.comments.includes(:user)} %>
+<%= render partial: "shared/comments", locals: {comments: @post.comments.includes(:user), show_delete: true} %>

@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Like, type: :model do
   before(:each) do
-    @user = FactoryBot.create(:user)
-    @post = FactoryBot.create(:post, user_id: @user.id)
-    @like = FactoryBot.create(:like, user_id: @user.id, post_id: @post.id)
+    @user = create(:user)
+    @post = create(:post, user_id: @user.id)
+    @like = create(:like, user_id: @user.id, post_id: @post.id)
   end
 
   describe 'Validations' do

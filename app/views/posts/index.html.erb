@@ -2,7 +2,7 @@
 
 <% @posts.each do |post| %>
   <%= render "shared/post", post: post %>
-  <%= render partial: "shared/comments", locals: {comments: post.comments.includes(:user)} %>
+  <%= render partial: "shared/comments", locals: {comments: post.comments.includes(:user), show_delete: false} %>
 <% end %>
 
 <button class="btn mt-4 bg-primary d-block mx-auto">Pagination</button>

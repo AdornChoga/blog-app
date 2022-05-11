@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   before(:each) do
-    @user = FactoryBot.create(:user)
-    @post = FactoryBot.create(:post, user_id: @user.id)
+    @user = create(:user)
+    @post = create(:post, user_id: @user.id)
     @comments_text = ['comment 1', 'comment 2', 'comment 3', 'comment 4', 'comment 5', 'comment 6']
     @comments_text.each do |comment_text|
-      FactoryBot.create(:comment, text: comment_text, user_id: @user.id, post_id: @post.id)
+      create(:comment, text: comment_text, user_id: @user.id, post_id: @post.id)
     end
   end
   describe 'Validations' do
