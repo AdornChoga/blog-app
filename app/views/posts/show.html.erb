@@ -15,7 +15,7 @@
       <%= form.submit "👍 Like", class: "btn btn-primary", data: {disable_with: "👍"} %>
     <% end %>
   </div>
-  <% if can? :destroy, @post %>j
+  <% if can? :destroy, @post %>
     <%= button_to 'Delete',
       "/users/#{params[:user_id]}/posts/#{@post.id}",
       class: "btn text-dark btn-danger",
@@ -26,4 +26,4 @@
 <br />
 <strong><u>Comments</u></strong>
 
-<%= render partial: "shared/comments", locals: {comments: @post.comments.includes(:user)} %>
+<%= render partial: "shared/comments", locals: {comments: @post.comments.includes(:user), show_delete: true} %>

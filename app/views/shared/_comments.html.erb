@@ -4,7 +4,7 @@
     <span class="flex-grow-1">
       <%= "#{comment.user.name}: #{comment.text}" %>
     </span>
-    <% if can? :destroy, comment %>
+    <% if can_show_delete_btn?(comment, show_delete) %>
       <%= button_to "Delete",
       "/users/#{params[:user_id]}/posts/#{@post.id}/comments/#{comment.id}",
       class: "btn btn-danger p-1",
