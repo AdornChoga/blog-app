@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User, type: :request do
+RSpec.describe User, type: :request do
   describe 'GET #index' do
     before(:example) { get('/users') }
     it 'should return a 200 response status code' do
@@ -18,8 +18,8 @@ describe User, type: :request do
 
   describe 'GET #show' do
     before(:each) do
-      user = FactoryBot.create(:user)
-      get user_path(id: user.id)
+      @user = FactoryBot.create(:user)
+      get user_path(id: @user.id)
     end
 
     it 'should return a 200 response status code' do

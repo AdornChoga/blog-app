@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  user = FactoryBot.create(:user)
-  post = FactoryBot.create(:post, user_id: user.id)
-  comment = FactoryBot.create(:comment, user_id: user.id, post_id: post.id)
+  let(:user) { create(:user) }
+  let(:post) { create(:post, user_id: user.id) }
+  let(:comment) { create(:comment, user_id: user.id, post_id: post.id) }
 
   describe 'Validations' do
     it 'is not valid without text attribute' do

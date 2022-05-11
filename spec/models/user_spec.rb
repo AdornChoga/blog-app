@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before(:each) do
-    @user = FactoryBot.create(:user)
+    @user = create(:user)
     @posts_titles = ['Post 1', 'Post 2', 'Post 3', 'Post 4']
     @posts_titles.each do |post_title|
-      FactoryBot.create(:post, title: post_title, user_id: @user.id)
+      create(:post, title: post_title, user_id: @user.id)
     end
   end
   describe 'Validations' do
