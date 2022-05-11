@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource param_method: :comment_params
 
   def new
     @comment = Comment.new
@@ -7,7 +8,6 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = Comment.new(comment_params)
     @comment.user = current_user
     @comment.post = @post
     if @comment.save
@@ -17,6 +17,15 @@ class CommentsController < ApplicationController
       redirect_to new_user_post_comment_path(params[:user_id], params[:post_id]),
                   notice: @comment.errors.first.full_message.to_s
     end
+  end
+
+  def destroy
+    flash[:notice] = if @comment.destroy
+                       'Comment deleted successfully'
+                     else
+                       'Comment was not deleted successfully'
+                     end
+    redirect_to user_post_path(params[:user_id], params[:post_id])
   end
 
   private
