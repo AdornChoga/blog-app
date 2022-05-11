@@ -29,10 +29,10 @@ class PostsController < ApplicationController
     if @post.destroy
       @post.update_posts_counter(current_user)
       flash[:notice] = 'Post deleted successfully'
-      redirect_to user_posts_path(current_user)
+      redirect_to user_posts_path(params[:user_id])
     else
       flash[:notice] = 'Post was not deleted'
-      redirect_to user_post_path(current_user, @post)
+      redirect_to user_post_path(params[:user_id], @post)
     end
   end
 
