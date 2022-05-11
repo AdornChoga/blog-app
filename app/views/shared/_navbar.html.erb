@@ -12,7 +12,7 @@
           <div class="nav-item dropdown">
             <span class="nav-link dropdown-toggle text-dark" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</span>
             <ul class="dropdown-menu  dropdown-menu-end" aria-labelledby="navbarScrollingDropdown">
-              <li><%= link_to "My Profile", user_path(current_user.id), class: "dropdown-item" %></li>
+              <li><%= link_to "My Profile (#{current_user.role})", user_path(current_user.id), class: "dropdown-item" %></li>
               <li><%= link_to "Edit Account", edit_user_registration_path, class: "dropdown-item" %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, class: "dropdown-item", "data-turbo-method": :delete %></li>
             </ul>

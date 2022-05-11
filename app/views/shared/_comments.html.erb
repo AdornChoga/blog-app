@@ -1,7 +1,16 @@
-<ul class="border mt-1 mx-3 bg-info">
+<ul class="mt-1 mx-3 bg-info">
   <% comments.each do |comment| %>
-  <li>
-    <%= "#{comment.user.name}: #{comment.text}" %>
+  <li class="d-flex border-bottom py-2 px-1">
+    <span class="flex-grow-1">
+      <%= "#{comment.user.name}: #{comment.text}" %>
+    </span>
+    <% if can? :destroy, comment %>
+      <%= button_to "Delete",
+      "/users/#{params[:user_id]}/posts/#{@post.id}/comments/#{comment.id}",
+      class: "btn btn-danger p-1",
+      method: :delete
+      %>
+    <% end %>
   </li>
   <% end %>
 </ul>
