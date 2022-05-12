@@ -9,11 +9,12 @@ Rails.application.routes.draw do
     end
   end
   namespace :api do
-    devise_for :users, defaults: { format: :json },
+    devise_for :users, 
+    defaults: { format: :json },
                      class_name: 'ApiUser',
                            skip: [:registrations, :invitations,
                                   :passwords, :confirmations,
-                                  :unlocks],
+                                  :unlocks]
    
     
   end
