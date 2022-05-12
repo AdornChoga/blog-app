@@ -16,7 +16,7 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '89e7f29440d399748a3c9f0f782d927b7b49dd3704e77c6dd02d141abce19ee39e84101f769e589f84ca2743b3d6835c018640f3ecbc4c2baa46b6b6f46f74f3'
 
-  config.navigational_formats = ['*/*', :html, :turbo_stream]
+  
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -310,4 +310,21 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  config.jwt do |jwt|
+    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
+    jwt.dispatch_requests = [ 
+          ['POST', %r{^/api/sign_in$}],
+          ['POST', %r{^/api/sign_in.json$}]
+    ]
+    jwt.revocation_requests = [
+          ['DELETE', %r{^/api/sign_out$}],
+          ['DELETE', %r{^/api/sign_out.json$}]
+    ]
+    jwt.expiration_time = 1.day.to_i
+    jwt.request_formats = { api_user: [:json] }
+end
+
+
+config.navigational_formats = ['*/*', :html, :json,:turbo_stream]
 end
