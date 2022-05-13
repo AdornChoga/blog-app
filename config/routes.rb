@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post "login" => "users#login"
       get "users" => "users#index"
       get "user/posts" => "posts#index"
+      get "post/comments" => "comments#index"
     end
   end
 end
