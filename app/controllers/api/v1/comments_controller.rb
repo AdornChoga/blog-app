@@ -13,6 +13,6 @@ class Api::V1::CommentsController < Api::V1::ApiController
       user_id: @current_user.id,
       post_id: params[:post_id]
     )
-    render json: { message: "Comment created successfully"}, status: :created
+    render json: { message: 'Comment created successfully' }, status: :created
   end
 end

@@ -7,16 +7,12 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def login
-
     @user = User.find_by_email!(params[:email])
-    if @user && @user.valid_password?(params[:password])
+    if @user&.valid_password?(params[:password])
       token = JsonWebToken.encode({ id: @user.id })
-      render json: { token: token }
-    
+      render json: { token: }
     else
-      render json: { error: "Invalid login details"}, status: :unauthorized
+      render json: { error: 'Invalid login details' }, status: :unauthorized
     end
   end
-private
-
 end
