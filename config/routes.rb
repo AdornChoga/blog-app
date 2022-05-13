@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get "users" => "users#index"
       get "user/posts" => "posts#index"
       get "post/comments" => "comments#index"
+      get "post/comments/create" => "comments#create"
     end
   end
 end
