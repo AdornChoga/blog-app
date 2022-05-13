@@ -9,11 +9,20 @@ class Api::V1::ApiController < ActionController::API
       headers = request.headers['Authorization']
       
       decoded = JsonWebToken.decode headers
-      render json: {token:decoded} and return
+      # render json: decoded and return
+       set_current_user(decoded)
+      render json: {user: @current_user} and return
     else
       render json: {message:"Authorization token missing"}, status: :unprocessable_entity and return
     end
 
 
+  end
+  private 
+  def set_current_user(decoded_token)
+     id= decoded_token[0]["id"]
+     
+    #  render :json => {id: id} and return
+     @current_user = User.find(id)
   end
 end
