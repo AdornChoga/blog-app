@@ -7,4 +7,9 @@ Rails.application.routes.draw do
       resources :likes, only: [:create]
     end
   end
+  namespace :api do
+    namespace :v1 do
+      post "login" => "users#login"
+    end
+  end
 end
