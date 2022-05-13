@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post "login" => "users#login"
       get "users" => "users#index"
+      get "user/posts" => "posts#index"
     end
   end
 end
